@@ -4,3 +4,4 @@ Spring Boot - Tutorial Rest Service
 <br>I've consulted these websites below to learn and develop this application on Spring Boot:
 <br>https://spring.io/guides/gs/rest-service/
 <br>https://spring.io/guides/tutorials/rest/
+<br>https://dzone.com/articles/spring-boot-restful-api-documentation-with-swagger
