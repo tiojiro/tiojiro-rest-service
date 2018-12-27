@@ -28,29 +28,46 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		
+		<!-- h2: base de dados em tempo de execução, carregado em memória -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- lombok: cria DTO de modo simples onde os getters e setters são criados automaticamente -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- tag::spring-hateoas[] -->
+		<!-- hateoas: documentacao para navegar criar dinamicamente links de navegacao -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
-		<!-- end::spring-hateoas[] -->
+		
+		<!-- springfox / swagger: documentacao de APIs restfull -->
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger2</artifactId>
+		    <version>2.6.1</version>
+		    <scope>compile</scope>
+		</dependency>
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger-ui</artifactId>
+		    <version>2.6.1</version>
+		    <scope>compile</scope>
+		</dependency>	
 	</dependencies>
 
 	<build>
@@ -72,6 +89,4 @@
             </plugin>
 		</plugins>
 	</build>
-
-
 </project>

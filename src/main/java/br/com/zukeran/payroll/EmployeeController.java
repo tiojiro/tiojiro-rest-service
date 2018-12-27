@@ -21,8 +21,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping(produces = {MediaType.APPLICATION_JSON_VALUE, "application/hal+json"})
+@Api(description="Controlador de Employees")
 class EmployeeController {
 
 	private final EmployeeRepository repository;
@@ -36,6 +42,13 @@ class EmployeeController {
 
 	// Aggregate root
 
+	@ApiOperation(value = "Listar todos os Employees")
+	@ApiResponses(value = {
+	        @ApiResponse(code = 200, message = "Lista retornada com sucesso"),
+	        @ApiResponse(code = 401, message = "Você não tem autorização para ver a lista"),
+	        @ApiResponse(code = 403, message = "O acesso a lista está proibido"),
+	        @ApiResponse(code = 404, message = "Lista não encontrada")
+	})
 	@GetMapping("/employees")
 	Resources<Resource<Employee>> all() {
 
@@ -47,6 +60,7 @@ class EmployeeController {
 			linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
 	}
 
+	@ApiOperation(value = "Adicionar novo Employee")
 	@PostMapping("/employees")
 	ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee) throws URISyntaxException {
 
@@ -59,6 +73,7 @@ class EmployeeController {
 
 	// Single item
 
+	@ApiOperation(value = "Exibe Employee por ID")
 	@GetMapping("/employees/{id}")
 	Resource<Employee> one(@PathVariable Long id) {
 
@@ -67,6 +82,7 @@ class EmployeeController {
 		return assembler.toResource(employee);
 	}
 
+	@ApiOperation(value = "Sobreescreve um Employee por ID")
 	@PutMapping("/employees/{id}")
 	ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) throws URISyntaxException {
 
@@ -88,6 +104,7 @@ class EmployeeController {
 			.body(resource);
 	}
 
+	@ApiOperation(value = "Apagar Employee por ID")
 	@DeleteMapping("/employees/{id}")
 	ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
 
